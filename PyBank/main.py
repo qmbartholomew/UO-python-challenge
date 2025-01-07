@@ -27,7 +27,7 @@ with open(csvpath) as csvfile:
         profit = int(row[1])
         row_count += 1
         total += profit
-
+        # Skip first row of data (no profit to compare to) then determine the change in profit
         if prev_profit is not None:
             change = profit - prev_profit
             profit_change.append(change)
@@ -42,6 +42,7 @@ with open(csvpath) as csvfile:
 
 avg = sum(profit_change) / len(profit_change)
 
+# Create a new text file + print to terminal
 with open(output_path, 'w') as file:
     file.write('Financial Analysis' + '\n')
     file.write('\n' + '----------------------------' + '\n')
@@ -52,10 +53,10 @@ with open(output_path, 'w') as file:
     file.write(f'\n Greatest Decrease in Profits: {min_profit[0]} (${min_profit[1]})')
 
 
-    print('Financial Analysis' + '\n')
-    print('\n' + '----------------------------' + '\n')
-    print(f'\n Total Months: {row_count} \n')
-    print(f'\n Total: ${total} \n')
-    print(f'\n Average Change: ${avg:.2f} \n')
-    print(f'\n Greatest Increase in Profits: {max_profit[0]} (${max_profit[1]}) \n')
-    print(f'\n Greatest Decrease in Profits: {min_profit[0]} (${min_profit[1]})')
+print('Financial Analysis' + '\n')
+print('\n' + '----------------------------' + '\n')
+print(f'\n Total Months: {row_count} \n')
+print(f'\n Total: ${total} \n')
+print(f'\n Average Change: ${avg:.2f} \n')
+print(f'\n Greatest Increase in Profits: {max_profit[0]} (${max_profit[1]}) \n')
+print(f'\n Greatest Decrease in Profits: {min_profit[0]} (${min_profit[1]})')
